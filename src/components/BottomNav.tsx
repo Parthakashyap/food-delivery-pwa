@@ -3,14 +3,20 @@ import { Home, Search, User } from 'lucide-react';
 
 interface BottomNavProps {
   onAccountClick?: () => void;
+  onSearchClick?: () => void;
   currentPage?: 'home' | 'search' | 'account';
 }
 
-export default function BottomNav({ onAccountClick, currentPage = 'home' }: BottomNavProps) {
+export default function BottomNav({ onAccountClick, onSearchClick, currentPage = 'home' }: BottomNavProps) {
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-3 z-10">
       <NavItem icon={Home} label="Home" active={currentPage === 'home'} />
-      <NavItem icon={Search} label="Browse" active={currentPage === 'search'} />
+      <NavItem 
+        icon={Search} 
+        label="Search" 
+        active={currentPage === 'search'} 
+        onClick={onSearchClick}
+      />
       <NavItem 
         icon={User} 
         label="Account" 
