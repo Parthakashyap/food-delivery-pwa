@@ -5,6 +5,7 @@ import RestaurantCard from './components/RestaurantCard';
 import PromotionCard from './components/PromotionCard';
 import BottomNav from './components/BottomNav';
 import LoadingSpinner from './components/LoadingSpinner';
+import SuggestedItems from './components/SuggestedItems';
 import { CartProvider } from './context/CartContext';
 import { useAuth } from './context/AuthContext';
 import { useCart } from './context/CartContext';
@@ -102,7 +103,7 @@ function AppContent() {
             <CategoryList />
             
             <div 
-              onClick={() => setSelectedRestaurant('kfc')}
+              onClick={() => setSelectedRestaurant('mexican')}
               className="cursor-pointer transition-transform hover:scale-[1.02]"
             >
               <RestaurantCard
@@ -114,7 +115,10 @@ function AppContent() {
               />
             </div>
             
-            <div className="cursor-pointer transition-transform hover:scale-[1.02]">
+            <div 
+              onClick={() => setSelectedRestaurant('italian')}
+              className="cursor-pointer transition-transform hover:scale-[1.02]"
+            >
               <RestaurantCard
                 name="Italian Taste"
                 image="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80"
@@ -123,6 +127,8 @@ function AppContent() {
                 rating={4.8}
               />
             </div>
+
+            <SuggestedItems />
             
             <PromotionCard
               title="Order best fried chicken wings"
