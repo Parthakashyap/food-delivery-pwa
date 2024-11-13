@@ -21,9 +21,7 @@ export default function RestaurantHeader({ name, image, description, onBack }: R
         <img src={image} alt={name} className="w-full h-full rounded-full object-cover" />
       </div>
       <p className="text-gray-500 text-sm px-8">{description}</p>
-      <button className="w-full bg-green-50 text-green-800 py-3 rounded-lg mt-4 font-medium">
-        Start Order
-      </button>
+      
     </div>
   );
 }

@@ -26,7 +26,7 @@ export default function RestaurantDetails({ onBack, onCartClick }: RestaurantDet
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-white sticky top-0 z-20">
+      <div className="bg-white top-0 z-20">
         <RestaurantHeader
           name="KFC"
           image="https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?auto=format&fit=crop&q=80"

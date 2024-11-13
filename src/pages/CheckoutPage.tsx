@@ -9,7 +9,7 @@ interface CheckoutPageProps {
 export default function CheckoutPage({ onBack }: CheckoutPageProps) {
   const { getTotalPrice } = useCart();
   const [paymentMethod, setPaymentMethod] = useState('card');
-  const deliveryFee = 0.99;
+  const deliveryFee = 99;
   const tax = getTotalPrice() * 0.1;
   const total = getTotalPrice() + deliveryFee + tax;
 

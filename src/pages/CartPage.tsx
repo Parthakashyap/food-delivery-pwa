@@ -9,7 +9,7 @@ interface CartPageProps {
 
 export default function CartPage({ onClose, onCheckout }: CartPageProps) {
   const { items, updateQuantity, getTotalPrice } = useCart();
-  const deliveryFee = 0.99;
+  const deliveryFee = 99;
   const tax = getTotalPrice() * 0.1;
 
   return (
