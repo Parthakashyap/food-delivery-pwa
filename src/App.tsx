@@ -9,7 +9,7 @@ import { CartProvider } from './context/CartContext';
 import { useAuth } from './context/AuthContext';
 import { useCart } from './context/CartContext';
 import LoginPage from './pages/LoginPage';
-import SearchPage from './pages/searchPage';
+import SearchPage from './pages/SearchPage';
 
 // Lazy load pages
 const RestaurantDetails = lazy(() => import('./pages/RestaurantDetails'));
