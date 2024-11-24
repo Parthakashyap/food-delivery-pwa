@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
-import { Mail, Lock } from 'lucide-react';
+import { Mail, Lock, Store, User } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+
+type UserRole = 'customer' | 'restaurant';
 
 export default function LoginPage() {
   const { login } = useAuth();
   const [email, setEmail] = useState('test@test.com');
   const [password, setPassword] = useState('admin');
   const [error, setError] = useState('');
+  const [selectedRole, setSelectedRole] = useState<UserRole>('customer');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     
     try {
-      await login(email, password);
+      await login(email, password, selectedRole);
     } catch (err) {
       setError('Invalid credentials. Use test@test.com / admin');
     }
@@ -24,8 +27,34 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
-          <p className="mt-2 text-gray-600">Sign in to continue ordering your favorite food</p>
+          <p className="mt-2 text-gray-600">Sign in to continue</p>
           <p className="mt-2 text-sm text-gray-500">Use test@test.com / admin to login</p>
+        </div>
+
+        {/* Role Selection */}
+        <div className="flex gap-4">
+          <button
+            onClick={() => setSelectedRole('customer')}
+            className={`flex-1 flex flex-col items-center gap-2 p-4 rounded-lg border-2 transition-colors ${
+              selectedRole === 'customer'
+                ? 'border-green-500 bg-green-50'
+                : 'border-gray-200 hover:border-green-200'
+            }`}
+          >
+            <User className={`w-6 h-6 ${selectedRole === 'customer' ? 'text-green-500' : 'text-gray-400'}`} />
+            <span className={selectedRole === 'customer' ? 'text-green-500' : 'text-gray-500'}>Customer</span>
+          </button>
+          <button
+            onClick={() => setSelectedRole('restaurant')}
+            className={`flex-1 flex flex-col items-center gap-2 p-4 rounded-lg border-2 transition-colors ${
+              selectedRole === 'restaurant'
+                ? 'border-green-500 bg-green-50'
+                : 'border-gray-200 hover:border-green-200'
+            }`}
+          >
+            <Store className={`w-6 h-6 ${selectedRole === 'restaurant' ? 'text-green-500' : 'text-gray-400'}`} />
+            <span className={selectedRole === 'restaurant' ? 'text-green-500' : 'text-gray-500'}>Restaurant Owner</span>
+          </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">

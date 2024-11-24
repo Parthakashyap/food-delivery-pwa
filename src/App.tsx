@@ -11,6 +11,7 @@ import { useAuth } from './context/AuthContext';
 import { useCart } from './context/CartContext';
 import LoginPage from './pages/LoginPage';
 import SearchPage from './pages/SearchPage';
+import RestaurantDashboard from './pages/RestaurantDashboard';
 
 // Lazy load pages
 const RestaurantDetails = lazy(() => import('./pages/RestaurantDetails'));
@@ -19,7 +20,7 @@ const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
 const AccountPage = lazy(() => import('./pages/AccountPage'));
 
 function AppContent() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { items } = useCart();
   const [selectedRestaurant, setSelectedRestaurant] = useState<string | null>(null);
   const [showCart, setShowCart] = useState(false);
@@ -66,6 +67,11 @@ function AppContent() {
 
   if (!isAuthenticated) {
     return <LoginPage />;
+  }
+
+  // Show restaurant dashboard if user is a restaurant owner
+  if (user?.role === 'restaurant') {
+    return <RestaurantDashboard />;
   }
 
   return (
